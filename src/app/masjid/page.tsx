@@ -2,9 +2,14 @@
 
 import { Button, Container, Form, Modal, Row } from "react-bootstrap";
 import { MasjidStatus, useMasjidStore } from "./store/useMasjidStore";
+import { useState } from "react";
 
 const Masjid = () => {
     const { isOpenDialog, setIsOpenDialog, status, submitDoa } = useMasjidStore();
+
+    const [doaTitle, setDoaTitle] = useState("");
+    const [doa, setDoa] = useState("");
+    const [maksud, setMaksud] = useState("");
 
 
     return (
@@ -20,23 +25,23 @@ const Masjid = () => {
                     <Form>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label>Tajuk Doa</Form.Label>
-                            <Form.Control type="email" placeholder="Isi tajuk doa" />
+                            <Form.Control type="email" placeholder="Isi tajuk doa" value={doaTitle} onChange={(e) => setDoaTitle(e.target.value)} />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Doa</Form.Label>
-                            <Form.Control type="password" placeholder="Isi doa" />
+                            <Form.Control  placeholder="Isi doa" value={doa} onChange={(e) => setDoa(e.target.value)} />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Label>Maksud</Form.Label>
-                            <Form.Control type="password" placeholder="Isi maksud" />
+                            <Form.Control  placeholder="Isi maksud" value={maksud} onChange={(e) => setMaksud(e.target.value)} />
                         </Form.Group>
 
                         <Button
                             variant="primary"
                             type="submit"
                             disabled={status === MasjidStatus.LOADING}
-                            onClick={submitDoa}
+                            onClick={() => submitDoa(doaTitle, doa, maksud)}
                         >
                             Submit
                         </Button>
