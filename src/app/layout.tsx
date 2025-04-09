@@ -4,6 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 import "./globals.css";
+import { Navbar } from "react-bootstrap";
+import AppNavbar from "./app_navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <AppNavbar />
         {children}
       </body>
     </html>
