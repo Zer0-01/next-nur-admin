@@ -1,13 +1,18 @@
-import { Button, Col, Container, Row, Table } from "react-bootstrap";
+'use client'
+
+import { useState } from "react";
+import { Button, Col, Container, Modal, Row, Table } from "react-bootstrap";
 
 export default function Page() {
+    const [show, setShow] = useState(false);
+
     return <>
         <Container>
             <h1>Doa</h1>
 
             <Row className="justify-content-end mb-1">
                 <Col xs="auto">
-                    <Button className="rounded-circle" variant="primary">+</Button>
+                    <Button className="rounded-circle" variant="primary" onClick={() => setShow(true)}>+</Button>
                 </Col>
 
             </Row>
@@ -41,5 +46,28 @@ export default function Page() {
                 </tbody>
             </Table>
         </Container>
+
+        <Modal
+            show={show}
+            size="lg"
+            aria-labelledby="contained-modal-title-vcenter"
+            centered
+            onHide={() => setShow(false)}
+        >
+            <Modal.Header closeButton>
+                <Modal.Title id="contained-modal-title-vcenter">
+                    Modal heading
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <h4>Centered Modal</h4>
+                <p>
+                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
+                    dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
+                    consectetur ac, vestibulum at eros.
+                </p>
+            </Modal.Body>
+
+        </Modal>
     </>;
 }
