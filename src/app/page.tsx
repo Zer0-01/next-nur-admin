@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react";
-import { Button, Col, Container, Modal, Row, Table } from "react-bootstrap";
+import { Button, Col, Container, Form, Modal, Row, Table } from "react-bootstrap";
 
 export default function Page() {
     const [show, setShow] = useState(false);
@@ -53,19 +53,35 @@ export default function Page() {
             aria-labelledby="contained-modal-title-vcenter"
             centered
             onHide={() => setShow(false)}
+            backdrop="static"
+
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    Modal heading
+                    Add Doa
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <h4>Centered Modal</h4>
-                <p>
-                    Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-                    dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-                    consectetur ac, vestibulum at eros.
-                </p>
+                <Form>
+                    <Form.Group className="mb-3" controlId="formBasicName">
+                        <Form.Label>Name</Form.Label>
+                        <Form.Control  placeholder="Enter name" />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicContent">
+                        <Form.Label>Content</Form.Label>
+                        <Form.Control placeholder="Enter content" as={"textarea"} rows={3} />
+                    </Form.Group>
+                    <Form.Group className="mb-3" controlId="formBasicTranslation">
+                        <Form.Label>Translation</Form.Label>
+                        <Form.Control placeholder="Enter translation" as={"textarea"} rows={3} />
+                    </Form.Group>
+
+                  
+
+                    <Button variant="primary" type="submit">
+                        Submit
+                    </Button>
+                </Form>
             </Modal.Body>
 
         </Modal>
