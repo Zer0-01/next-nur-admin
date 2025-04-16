@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { Button, Col, Container, Form, Modal, Row, Table } from "react-bootstrap";
+import { useHomeStore } from "./homeStore";
 
 export default function Page() {
-    const [show, setShow] = useState(false);
+    const { isOpenModal, setIsOpenModal } = useHomeStore();
 
     return <>
         <Container>
@@ -12,7 +13,7 @@ export default function Page() {
 
             <Row className="justify-content-end mb-1">
                 <Col xs="auto">
-                    <Button className="rounded-circle" variant="primary" onClick={() => setShow(true)}>+</Button>
+                    <Button className="rounded-circle" variant="primary" onClick={() => setIsOpenModal(true)}>+</Button>
                 </Col>
 
             </Row>
@@ -48,11 +49,11 @@ export default function Page() {
         </Container>
 
         <Modal
-            show={show}
+            show={isOpenModal}
             size="lg"
             aria-labelledby="contained-modal-title-vcenter"
             centered
-            onHide={() => setShow(false)}
+            onHide={() => setIsOpenModal(false)}
             backdrop="static"
 
         >
@@ -65,7 +66,7 @@ export default function Page() {
                 <Form>
                     <Form.Group className="mb-3" controlId="formBasicName">
                         <Form.Label>Name</Form.Label>
-                        <Form.Control  placeholder="Enter name" />
+                        <Form.Control placeholder="Enter name" />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="formBasicContent">
                         <Form.Label>Content</Form.Label>
@@ -76,7 +77,7 @@ export default function Page() {
                         <Form.Control placeholder="Enter translation" as={"textarea"} rows={3} />
                     </Form.Group>
 
-                  
+
 
                     <Button variant="primary" type="submit">
                         Submit
